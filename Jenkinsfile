@@ -9,6 +9,11 @@ pipeline{
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+        stage('Archive'){
+            steps{
+                archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+            }
+        }
         stage('Test'){
             steps{
                 sh 'mvn test'
